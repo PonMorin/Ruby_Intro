@@ -9,28 +9,16 @@ end
 
 def max_2_sum arr
   # YOUR CODE HERE
-  first_max = -999
-  second_max = -999
+  arr_to_sum = arr.sort
   if arr.length == 0
     return 0
   elsif arr.length == 1
     return arr[0]
   else
-    arr.each{|x|
-      if x > first_max
-          first_max = x
-      end
-    }
-    get_index = arr.find_index(first_max)
-    arr.each_with_index{|y, i|
-      if i != get_index
-          if y > second_max
-              second_max = y
-          end
-      end
-    }
-    return first_max + second_max
+    sum = arr_to_sum[-1] + arr_to_sum[-2]
+    return sum
   end
+  
 end
 
 def sum_to_n? arr, n
@@ -89,10 +77,13 @@ end
 def starts_with_consonant? s
   # YOUR CODE HERE
   word = s.downcase
-  arr = ["a", "e", "i", "o", "u"]
-  if s == '' || s == '#foo'
-      return false
-  elsif !arr.include?(word[0])
+  arr = ["a", "e", "i", "o", "u", 
+    "?","<>", "'","[", "]", "}", 
+    "{", "=", "-", ")", "(", "*", 
+    "&", "^", "%", "$", "#", "`", 
+    "~", "{}"]
+
+  if !arr.include?(word[0]) && s != ''
       return true
   else
       return false
@@ -102,11 +93,17 @@ end
 def binary_multiple_of_4? s
   # YOUR CODE HERE
   s = s.delete(" ")
-  if s.count('01') == s.size && s.size != 3
-    puts "true"
+  if s == ""
+    return false
+
+  elsif s.count('01') == s.size
+    if s.to_i % 4 == 0
+      return true
+    end
 
   else
-    puts "false"
+    return false
+  
   end
 end
 
@@ -114,4 +111,14 @@ end
 
 class BookInStock
 # YOUR CODE HERE
+  def initialize(isbn, price)
+    @isbn = isbn
+    @price = price
+    raise ArgumentError if @isbn == '' || @price <= 0
+  end
+  attr_accessor :isbn, :price
+
+  def price_as_string
+    return "$#{sprintf('%.2f', @price)}"
+  end
 end
