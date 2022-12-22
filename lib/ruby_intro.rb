@@ -32,6 +32,7 @@ def sum_to_n? arr, n
           num = arr[i] + arr[j]
           if num == n && arr[i] != arr[j]
             flag_check = 1
+            break
           end
         end
       end
