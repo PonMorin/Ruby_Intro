@@ -74,7 +74,7 @@ def binary_multiple_of_4? s
     return false
 
   elsif s.count('01') == s.size
-    if s.to_i % 4 == 0
+    if s.to_i(2) % 4 == 0
       return true
     end
 
