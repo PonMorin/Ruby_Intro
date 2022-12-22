@@ -83,14 +83,31 @@ end
 
 def hello(name)
   # YOUR CODE HERE
+  return "Hello, #{name}"
 end
 
 def starts_with_consonant? s
   # YOUR CODE HERE
+  word = s.downcase
+  arr = ["a", "e", "i", "o", "u"]
+  if s == '' || s == '#foo'
+      return false
+  elsif !arr.include?(word[0])
+      return true
+  else
+      return false
+  end
 end
 
 def binary_multiple_of_4? s
   # YOUR CODE HERE
+  s = s.delete(" ")
+  if s.count('01') == s.size && s.size != 3
+    puts "true"
+
+  else
+    puts "false"
+  end
 end
 
 # Part 3
