@@ -18,52 +18,28 @@ def max_2_sum arr
     sum = arr_to_sum[-1] + arr_to_sum[-2]
     return sum
   end
-  
+
 end
 
 def sum_to_n? arr, n
   # YOUR CODE HERE
+  flag_check = 0
   if arr.length == 0 || arr.length == 1
-    return false
+      return false
   else
-    flag_check = 0
-    arr.each{|x|
-      get_index_x = arr.find_index(x)
-      arr.each{ |y|
-        get_index_y = arr.find_index(y)
-        if get_index_x != get_index_y
-          get_sum = x + y
-          if get_sum == n
+      for i in 0...arr.length
+        for j in 0...arr.length
+          num = arr[i] + arr[j]
+          if num == n && arr[i] != arr[j]
             flag_check = 1
-            break
           end
         end
-      }
-    } 
-    if flag_check == 1
-        flag_check = 0
+      end
+      if flag_check == 1
         return true
-    else
-        arr.each{|x|
-            arr.each{ |y|
-              arr.each{|z|
-                more_than_two = x + y + z
-                if more_than_two == n
-                    return false
-                    flag_check = 1
-                    break
-                end
-              }
-              if flag_check == 1
-                break
-              end  
-            }
-            if flag_check == 1
-                break
-            end
-        }
-        flag_check = 0
-    end
+      else
+        return false
+      end
   end
 end
 
